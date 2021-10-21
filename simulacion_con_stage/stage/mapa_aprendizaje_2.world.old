@@ -1,0 +1,50 @@
+
+# Desc: 1 pioneer robot with laser	
+
+# defines Pioneer-like robots
+include "pioneer.inc"
+
+# defines 'map' object used for floorplans
+include "map.inc"
+
+# defines sick laser
+include "sick.inc"
+
+# size of the world in meters
+size [16 16]
+
+# set the resolution of the underlying raytrace model in meters
+resolution 0.02
+
+# update the screen every 10ms (we need fast update for the stest demo)
+gui_interval 20
+
+# configure the GUI window
+window
+( 
+  #size [ 591.000 638.000 ] 
+  #center [-0.010 -0.040] 
+  #scale 0.028
+  size [ 600.0 700.0 ]
+  center [ 0.0 0.0 ]
+  rotate [ 0.0 0.0 ]
+  scale 60
+)
+
+# load an environment bitmap
+map
+( 
+  name "mapa_aprendizaje_2"
+  bitmap "../maps/mapa_aprendizaje_2.png"
+  size [ 12.0 8.0 2.0 ]
+  pose [  6.0  4.0 0.0 0.0 ]
+)
+
+# create a robot
+pioneer2dx
+(
+  name "robot1"
+  color "red"
+  pose [0 0 0]
+  sick_laser( samples 361 laser_sample_skip 4 )
+)
